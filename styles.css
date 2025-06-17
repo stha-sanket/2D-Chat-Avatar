@@ -1,0 +1,121 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.container {
+    text-align: center;
+}
+
+#avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    background-color: #ffcc99;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Face features */
+#avatar::before {
+    content: '';
+    position: absolute;
+    width: 140px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: #fff;
+    bottom: 40px;
+    left: 30px;
+}
+
+/* Eyes */
+.eye {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border-radius: 50%;
+    top: 70px;
+}
+
+.eye::after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: #333;
+    border-radius: 50%;
+    top: 7px;
+    left: 7px;
+}
+
+.eye.left {
+    left: 60px;
+}
+
+.eye.right {
+    right: 60px;
+}
+
+/* Mouth */
+.mouth {
+    position: absolute;
+    width: 80px;
+    height: 30px;
+    bottom: 50px;
+    left: 60px;
+    border-radius: 10px;
+    background-color: #ff6666;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+/* Idle state */
+#avatar.idle .mouth {
+    height: 5px;
+    background-color: #cc3333;
+}
+
+/* Listening state - make animation more noticeable */
+#avatar.listening .eye::after {
+    animation: blink 1.5s infinite;
+}
+
+#avatar.listening .mouth {
+    height: 15px;
+    background-color: #ff6666;
+    animation: breathe 1.5s infinite;
+}
+
+@keyframes breathe {
+    0% { height: 10px; }
+    50% { height: 15px; }
+    100% { height: 10px; }
+}
+
+/* Talking state - more pronounced animation */
+#avatar.talking .mouth {
+    animation: talk 0.3s infinite;
+    background-color: #ff3333;
+}
+
+@keyframes talk {
+    0% { height: 5px; }
+    50% { height: 25px; }
+    100% { height: 5px; }
+}
+
+.controls {
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 15px;
+    margin: 0 5px;
+    cursor: pointer;
+}
